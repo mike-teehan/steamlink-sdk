@@ -1,1 +1,31 @@
-mount -o bind /mnt/disk/roms roms; ./mame "$*"; umount roms;
+#!/bin/sh
+#
+# Save space on the SteamLink internal storage by bind mounting any
+# mame4all subdirs from external usb storage provided they exist
+#
+
+EXTDIR=/mnt/disk/mame4all
+
+# if EXTDIR doesn't exist, don't waste our time
+if ! [ -d $EXTDIR ]; then
+	exit 0;
+fi
+
+# these are the subdirs we try to bind
+SUBDIRS="artwork cfg frontend hi inp memcard nvram roms samples snap folders"
+
+# if the SUBDIR exists on the external storage, bind it in
+for SUBDIR in $SUBDIRS; do
+	DIR=$EXTDIR/$SUBDIR
+	if [ -d $DIR ]; then
+		mount -o bind $DIR $SUBDIR
+	fi
+done
+
+# run mame
+./mame $*
+
+# unbind everything aka cleanup
+for SUBDIR in $SUBDIRS; do
+	umount $SUBDIR
+done
