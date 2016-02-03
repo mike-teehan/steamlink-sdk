@@ -11,7 +11,7 @@ export DESTDIR="${PWD}/steamlink/apps/mame4all"
 mkdir -p "${DESTDIR}"
 cp -v mame "${DESTDIR}"
 cp -v mame.cfg.template "${DESTDIR}/mame.cfg"
-cp -v readme.txt cheat.dat clrmame.dat hiscore.dat "${DESTDIR}"
+cp -v mame-wrapper readme.txt cheat.dat clrmame.dat hiscore.dat "${DESTDIR}"
 mkdir -p "${DESTDIR}/skins"
 cp -v skins/*.bmp "${DESTDIR}/skins"
 for dir in artwork cfg frontend hi inp memcard nvram roms samples snap folders; do
