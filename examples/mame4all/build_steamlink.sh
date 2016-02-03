@@ -26,7 +26,7 @@ armv7a-cros-linux-gnueabi-strip "${DESTDIR}/mame"
 cat >"${DESTDIR}/toc.txt" <<__EOF__
 name=Mame4All
 icon=icon.png
-run=mame
+run=mame-wrapper
 __EOF__
 
 base64 -d >"${DESTDIR}/icon.png" <<__EOF__
