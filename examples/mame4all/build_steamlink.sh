@@ -7,6 +7,13 @@ STEAMLINK=1 make $MAKE_J || exit 2
 
 export DESTDIR="${PWD}/steamlink/apps/mame4all"
 
+# Enable ssh if requested
+if [ "$1" == "--enable-ssh" ]; then
+	echo "Enabling SSH - un:root / pw:steamlink123"
+	mkdir -p "${PWD}/steamlink/config/system"
+	echo "true" > "${PWD}/steamlink/config/system/enable_ssh.txt"
+fi
+
 # Copy the files to the app directory
 mkdir -p "${DESTDIR}"
 cp -v mame "${DESTDIR}"
